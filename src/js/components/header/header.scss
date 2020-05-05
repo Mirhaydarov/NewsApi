@@ -1,0 +1,49 @@
+@import "../../../styles/helpers/media";
+
+.header {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    min-height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgb(247, 247, 247);
+
+    @include media-custom(900px) {
+        flex-direction: column;
+        min-height: 120px;
+    }
+
+    &__nav {
+        margin-left: 30px;
+
+        @include media-custom(900px) {
+            margin-left: 0;
+            padding: 10px 15px 10px 15px;
+        }
+    }
+}
+
+.header-logo {
+    margin-left: 3%;
+    padding: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7);
+    border: 1px solid transparent;
+    outline: none;
+    font-size: 1.7rem;
+    font-weight: bold;
+
+    @include media-576 {
+        font-size: 1.3rem;
+    }
+
+    &:focus {
+        border-radius: 5px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+    }
+}
