@@ -1,0 +1,19 @@
+.error-indicator {
+    margin: 20px auto;
+    padding-top: 70px;
+    text-align: center;
+    line-height: 1.5;
+
+    &__img {
+        width: 150px;
+        height: 131px;
+    }
+
+    &__title {
+        font-size: 1.1rem;
+    }
+
+    &__desc {
+        font-size: .9rem;
+    }
+}

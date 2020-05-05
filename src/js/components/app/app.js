@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
 import Header from '../header';
+import RandomNews from '../random-news';
+import NewsItem from '../news-item';
+import ErrorBoundary from '../error-boundary';
+import ErrorIndicator from '../error-indicator';
 import NewsService from '../../service/news-service';
+
 export default class App extends Component {
     newsService = new NewsService();
 
     state = {
         news: [],
         hasError: false,
-        loading: true,
     };
 
     componentDidMount() {
@@ -21,13 +25,12 @@ export default class App extends Component {
             .then((news) => {
                 this.setState({
                     news,
-                    loading: false,
+                    hasError: false,
                 });
             })
             .catch((hasError) => {
                 this.setState({
-                    hasError,
-                    loading: false,
+                    hasError
                 });
             });
     };
@@ -38,26 +41,32 @@ export default class App extends Component {
             .then((news) => {
                 this.setState({
                     news,
-                    loading: false,
                     hasError: false,
                 });
             })
             .catch((hasError) => {
                 this.setState({
-                    hasError,
-                    loading: false,
+                    hasError
                 });
             });
     };
 
     render() {
+        const { news, hasError } = this.state;
+
+        if (hasError) {
+            return <ErrorIndicator />
+        }
+
         return (
-            <React.Fragment>
+            <ErrorBoundary>
                 <Header
                     updateNews={this.updateNews}
                     searchNews={this.searchNews}
                 />
-            </React.Fragment>
+                <RandomNews arrayNews={news} />
+                <NewsItem arrayNews={news} />
+            </ErrorBoundary>
         );
     }
 }

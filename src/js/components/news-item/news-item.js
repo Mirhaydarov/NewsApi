@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import NewsTemplate from '../news-template';
+import ErrorBoundary from '../error-boundary';
 
 import './news-item.scss';
 
@@ -26,13 +27,15 @@ const defaultProps = {
 
 function NewsItem({ arrayNews }) {
     return (
-        <main className='news'>
-            <div className='wrap'>
-                <div className='news__container'>
-                    <NewsTemplate arrayNews={arrayNews} />
+        <ErrorBoundary>
+            <main className='news'>
+                <div className='wrap'>
+                    <div className='news__container'>
+                        <NewsTemplate arrayNews={arrayNews} />
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </ErrorBoundary>
     );
 }
 

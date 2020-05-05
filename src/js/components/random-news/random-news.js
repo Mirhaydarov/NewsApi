@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import NewsTemplate from '../news-template';
+import ErrorBoundary from '../error-boundary';
 
 import './random-news.scss';
 
@@ -68,11 +69,13 @@ export default class RandomNews extends Component {
         const { arrayNews } = this.state;
 
         return (
-            <section className="random-news">
-                <div className="random-news__wrap wrap">
-                    <NewsTemplate arrayNews={arrayNews} />
-                </div>
-            </section>
+            <ErrorBoundary>
+                <section className="random-news">
+                    <div className="random-news__wrap wrap">
+                        <NewsTemplate arrayNews={arrayNews} />
+                    </div>
+                </section>
+            </ErrorBoundary>
         );
     };
 }
