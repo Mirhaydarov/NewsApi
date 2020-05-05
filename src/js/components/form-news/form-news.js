@@ -27,9 +27,13 @@ export default class FormNews extends Component {
     onSearchNews = (event) => {
         event.preventDefault();
 
-        const { searchNews } = this.props;
+        const { searchNews, updateNews } = this.props;
         const { selectedCountry, searchValue } = this.state;
 
+        if (searchValue.length == 0) {
+            return updateNews(selectedCountry);
+        }
+        
         return searchNews(selectedCountry, searchValue);
     }
 
